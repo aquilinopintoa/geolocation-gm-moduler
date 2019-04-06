@@ -1,0 +1,25 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Attach to running app",
+            "type": "node",
+            "request": "attach",
+            "port": 8080
+        },
+        {
+            "name": "Docker: Attach to Node",
+            "type": "node",
+            "request": "attach",
+            "port": 8080,
+            "address": "localhost",
+            "restart": false,
+            "localRoot": "${workspaceRoot}/geolocator/src/bin",
+            "remoteRoot": "/home/node/app/src/bin",
+            "protocol": "inspector"
+        }
+    ]
+}

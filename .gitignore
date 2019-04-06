@@ -1,0 +1,8 @@
+# packages
+geolocator/node_modules
+
+# .env files
+.env
+
+# generated files
+generator/dist

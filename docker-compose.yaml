@@ -1,0 +1,15 @@
+services:
+    gm-geolocator:
+        env_file:
+            - .env
+        user: '${DOCKER_USER}'
+        build:
+            context: .
+            dockerfile: ./docker/Dockerfile
+        container_name: geolocator_container
+        working_dir: /home/node/app
+        command: sh -c '${DEPLOY_CMD}'
+        volumes:
+            - ./geolocator:/home/node/app
+        ports:
+            - '${PORT}:${PORT}'
