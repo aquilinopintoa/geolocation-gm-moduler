@@ -1,3 +1,5 @@
+version: '3'
+
 services:
     gm-geolocator:
         env_file:
