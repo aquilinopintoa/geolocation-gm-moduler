@@ -2,8 +2,8 @@
     "apps": [
         {
             "name": "server",
-            "script": "./src/bin/server.ts",
-            "watch": true
+            "script": "./dist/bin/server.js",
+            "watch": "./dist"
         }
     ]
 }

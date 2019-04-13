@@ -5,26 +5,48 @@
     "description": "Geolocator",
     "scripts": {
         "test": "ts-node ./src/bin/test.ts",
-        "tsc": "tsc",
-        "tsc-watch": "tsc --watch",
-        "build": "npm run tsc",
-        "dev": "pm2-docker start ./pm2/dev.json"
+        "tsc": "./node_modules/.bin/tsc ",
+        "tslint-fix": "./node_modules/.bin/tslint src/**/*.ts",
+        "build": "npm run tslint-fix && npm run tsc",
+        "dev": "npm run build && pm2-docker start ./pm2/dev.json && npm run watch",
+        "start": "npm run build | node --inspect=5858 -r ts-node/register ./dist/bin/server.ts",
+        "start2": "npm run build",
+        "watch": "./node_modules/.bin/nodemon"
+    },
+    "nodemonConfig": {
+        "ignore": [
+            "**/*.test.ts",
+            "**/*.spec.ts",
+            ".git",
+            "node_modules"
+        ],
+        "watch": [
+            "src"
+        ],
+        "exec": "npm run start2",
+        "ext": "ts"
     },
     "keywords": [],
     "devDependencies": {
-        "@types/lodash": "^4.14.116",
         "@types/express": "^4.16.0",
+        "@types/lodash": "^4.14.116",
         "@types/node": "^10.5.5",
+        "@typescript-eslint/eslint-plugin": "^1.6.0",
+        "@typescript-eslint/parser": "^1.6.0",
         "eslint": "^5.2.0",
         "eslint-config-standard": "^11.0.0",
         "eslint-plugin-import": "^2.13.0",
         "eslint-plugin-node": "^7.0.1",
         "eslint-plugin-promise": "^3.8.0",
         "eslint-plugin-standard": "^3.1.0",
+        "nodemon": "^1.18.11",
         "ts-node": "^7.0.0",
-        "typescript": "^3.0.1"
+        "tslint": "^5.15.0",
+        "typescript": "^3.4.3",
+        "typescript-tslint-plugin": "^0.3.1"
     },
     "dependencies": {
+        "@types/morgan": "^1.7.35",
         "axios": "^0.18.0",
         "dotenv": "^6.0.0",
         "express": "^4.16.3",
